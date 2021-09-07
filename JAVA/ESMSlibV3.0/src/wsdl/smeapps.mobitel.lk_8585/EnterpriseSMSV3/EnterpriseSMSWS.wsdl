@@ -1,0 +1,568 @@
+<?xml version='1.0' encoding='UTF-8'?><wsdl:definitions xmlns:ns1="http://cxf.apache.org/bindings/xformat" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://ws.esms.mobitel.lk/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="EnterpriseSMSImplService" targetNamespace="http://ws.esms.mobitel.lk/">
+<wsdl:types>
+<xs:schema xmlns:tns="http://ws.esms.mobitel.lk/" xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="unqualified" targetNamespace="http://ws.esms.mobitel.lk/" version="1.0">
+
+<xs:element name="serviceTest" type="tns:serviceTest"/>
+<xs:element name="serviceTestResponse" type="tns:serviceTestResponse"/>
+
+<xs:element name="createSession" type="tns:createSession"/>
+<xs:element name="createSessionResponse" type="tns:createSessionResponse"/>
+
+<xs:element name="renewSession" type="tns:renewSession"/>
+<xs:element name="renewSessionResponse" type="tns:renewSessionResponse"/>
+
+<xs:element name="closeSession" type="tns:closeSession"/>
+<xs:element name="closeSessionResponse" type="tns:closeSessionResponse"/>
+
+<xs:element name="isSession" type="tns:isSession"/>
+<xs:element name="isSessionResponse" type="tns:isSessionResponse"/>
+
+<xs:element name="sendMessages" type="tns:sendMessages"/>
+<xs:element name="sendMessagesResponse" type="tns:sendMessagesResponse"/>
+
+<xs:element name="sendMessagesMultiLang" type="tns:sendMessagesMultiLang"/>
+<xs:element name="sendMessagesMultiLangResponse" type="tns:sendMessagesMultiLangResponse"/>
+
+<xs:element name="sendCampaignMessages" type="tns:sendCampaignMessages"/>
+<xs:element name="sendCampaignMessagesResponse" type="tns:sendCampaignMessagesResponse"/>
+
+<xs:element name="getMessagesFromShortcode" type="tns:getMessagesFromShortcode"/>
+<xs:element name="getMessagesFromShortcodeResponse" type="tns:getMessagesFromShortcodeResponse"/>
+
+<xs:element name="getMessagesFromLongNumber" type="tns:getMessagesFromLongNumber"/>
+<xs:element name="getMessagesFromLongNumberResponse" type="tns:getMessagesFromLongNumberResponse"/>
+
+<xs:element name="getSentMessageReports" type="tns:getSentMessageReports"/>
+<xs:element name="getSentMessageReportsResponse" type="tns:getSentMessageReportsResponse"/>
+
+<xs:element name="getDeliveryReports" type="tns:getDeliveryReports"/>
+<xs:element name="getDeliveryReportsResponse" type="tns:getDeliveryReportsResponse"/>
+
+<xs:complexType name="user">
+<xs:sequence>
+<xs:element name="customer" type="xs:long" minOccurs="0"/>
+<xs:element name="id" type="xs:long" minOccurs="0"/>
+<xs:element name="password" type="xs:string" minOccurs="0"/>
+<xs:element name="username" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="session">
+<xs:sequence>
+<xs:element name="expiryDate" type="xs:dateTime" minOccurs="0"/>
+<xs:element name="id" type="xs:long" minOccurs="0"/>
+<xs:element name="isActive" type="xs:boolean" minOccurs="0"/>
+<xs:element name="sessionId" type="xs:string" minOccurs="0"/>
+<xs:element name="user" type="xs:long" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="serviceTest">
+<xs:sequence>
+<xs:element name="arg0" type="tns:user" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="serviceTestResponse">
+<xs:sequence>
+<xs:element name="return" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="createSession">
+<xs:sequence>
+<xs:element name="user" type="tns:user" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="createSessionResponse">
+<xs:sequence>
+<xs:element name="return" type="tns:session" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="renewSession">
+<xs:sequence>
+<xs:element name="session" type="tns:session" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="renewSessionResponse">
+<xs:sequence>
+<xs:element name="return" type="tns:session" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="closeSession">
+<xs:sequence>
+<xs:element name="session" type="tns:session" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="closeSessionResponse">
+<xs:sequence/>
+</xs:complexType>
+
+<xs:complexType name="isSession">
+<xs:sequence>
+<xs:element name="session" type="tns:session" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="isSessionResponse">
+<xs:sequence>
+<xs:element name="return" type="xs:boolean" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="smsMessage">
+<xs:sequence>
+<xs:element name="message" type="xs:string" minOccurs="0" />
+<xs:element name="messageId" type="xs:long"/>
+<xs:element name="recipients" type="xs:string" nillable="true" maxOccurs="unbounded" minOccurs="0" />
+<xs:element name="retries" type="xs:int"/>
+<xs:element name="sender" type="xs:string" minOccurs="0"/>
+<xs:element name="sequenceNum" type="xs:int"/>
+<xs:element name="status" type="xs:int"/>
+<xs:element name="time" type="xs:dateTime" minOccurs="0"/>
+<xs:element name="type" type="xs:string" minOccurs="0"/>
+<xs:element name="user" type="tns:user" minOccurs="0"/>
+<xs:element name="messageType" type="xs:int" minOccurs="0"/>
+
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="sendMessages">
+<xs:sequence>
+<xs:element name="session" type="tns:session" minOccurs="0"/>
+<xs:element name="smsMessage" type="tns:smsMessage" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="sendMessagesResponse">
+<xs:sequence>
+<xs:element name="return" type="xs:int"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="smsMessageMultiLang">
+<xs:sequence>
+<xs:element name="message" minOccurs="0" type="xs:string"/>
+<xs:element name="messageId" type="xs:long"/>
+<xs:element name="recipients" maxOccurs="unbounded" minOccurs="0" nillable="true" type="xs:string"/>
+<xs:element name="retries" type="xs:int"/>
+<xs:element name="sender" minOccurs="0" type="xs:string"/>
+<xs:element name="sequenceNum" type="xs:int"/>
+<xs:element name="status" type="xs:int"/>
+<xs:element name="time" minOccurs="0" type="xs:dateTime"/>
+<xs:element name="type" minOccurs="0" type="xs:string"/>
+<xs:element name="user" minOccurs="0" type="tns:user"/>
+<xs:element name="messageType" type="xs:int" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="sendMessagesMultiLang">
+<xs:sequence>
+<xs:element name="session" type="tns:session" minOccurs="0"/>
+<xs:element name="smsMessageMultiLang" type="tns:smsMessageMultiLang" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="sendMessagesMultiLangResponse">
+<xs:sequence>
+<xs:element name="return" type="xs:int"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="smsCampaignMessage">
+<xs:sequence>
+<xs:element name="message" minOccurs="0" type="xs:string"/>
+<xs:element name="messageId" type="xs:long"/>
+<xs:element name="recipients" maxOccurs="unbounded" minOccurs="0" nillable="true" type="xs:string"/>
+<xs:element name="retries" type="xs:int"/>
+<xs:element name="esmClass" type="xs:int"/>
+<xs:element name="sender" minOccurs="0" type="xs:string"/>
+<xs:element name="sequenceNum" type="xs:int"/>
+<xs:element name="status" type="xs:int"/>
+<xs:element name="time" minOccurs="0" type="xs:string"/>
+<xs:element name="type" minOccurs="0" type="xs:string"/>
+<xs:element name="user" minOccurs="0" type="tns:user"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="sendCampaignMessages">
+<xs:sequence>
+<xs:element name="session" type="tns:session" minOccurs="0"/>
+<xs:element name="smsCampaignMessage" type="tns:smsCampaignMessage" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="sendCampaignMessagesResponse">
+<xs:sequence>
+<xs:element name="return" type="xs:int"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="getMessagesFromShortcode">
+<xs:sequence>
+<xs:element name="session" type="tns:session" minOccurs="0" />
+<xs:element name="shortcode" type="xs:string" minOccurs="0" />
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="getMessagesFromShortcodeResponse">
+<xs:sequence>
+<xs:element maxOccurs="unbounded" minOccurs="0" name="return" type="tns:smsMessage"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="getMessagesFromLongNumber">
+<xs:sequence>
+<xs:element name="session" type="tns:session" minOccurs="0"/>
+<xs:element name="longNumber" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="getMessagesFromLongNumberResponse">
+<xs:sequence>
+<xs:element maxOccurs="unbounded" name="return" type="tns:smsMessage" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="sentMessages">
+<xs:sequence>
+<xs:element name="alias" type="xs:string" minOccurs="0"/>
+<xs:element name="id" type="xs:long" minOccurs="0"/>
+<xs:element name="message" type="xs:string" minOccurs="0"/>
+<xs:element name="recipient" type="xs:string" minOccurs="0"/>
+<xs:element name="status" type="xs:string" minOccurs="0"/>
+<xs:element name="timeSent" type="xs:string" minOccurs="0"/>
+<xs:element name="timeDelivered" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="getSentMessageReports">
+<xs:sequence>
+<xs:element name="session" type="tns:session" minOccurs="0"/>
+<xs:element name="startDate" type="xs:string" minOccurs="0"/>
+<xs:element name="endDate" type="xs:string" minOccurs="0"/>
+<xs:element name="alias" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="getSentMessageReportsResponse">
+<xs:sequence>
+<xs:element maxOccurs="unbounded" minOccurs="0" name="return" type="tns:sentMessages"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="getDeliveryReports">
+<xs:sequence>
+<xs:element name="session" type="tns:session" minOccurs="0" />
+<xs:element name="alias" type="xs:string" minOccurs="0" />
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="getDeliveryReportsResponse">
+<xs:sequence>
+<xs:element maxOccurs="unbounded" minOccurs="0" name="return" type="tns:smsMessage"/>
+</xs:sequence>
+</xs:complexType>
+
+</xs:schema>
+</wsdl:types>
+
+<wsdl:message name="serviceTest">
+<wsdl:part element="tns:serviceTest" name="parameters"></wsdl:part>
+</wsdl:message>
+
+<wsdl:message name="serviceTestResponse">
+<wsdl:part element="tns:serviceTestResponse" name="parameters"></wsdl:part>
+</wsdl:message>
+
+<wsdl:message name="createSession">
+<wsdl:part element="tns:createSession" name="parameters"></wsdl:part>
+</wsdl:message>
+
+<wsdl:message name="createSessionResponse">
+<wsdl:part element="tns:createSessionResponse" name="parameters"></wsdl:part>
+</wsdl:message>
+
+<wsdl:message name="renewSession">
+<wsdl:part element="tns:renewSession" name="parameters"></wsdl:part>
+</wsdl:message>
+
+<wsdl:message name="renewSessionResponse">
+<wsdl:part element="tns:renewSessionResponse" name="parameters"></wsdl:part>
+</wsdl:message>
+
+<wsdl:message name="closeSession">
+<wsdl:part element="tns:closeSession" name="parameters"></wsdl:part>
+</wsdl:message>
+
+<wsdl:message name="closeSessionResponse">
+<wsdl:part element="tns:closeSessionResponse" name="parameters"></wsdl:part>
+</wsdl:message>
+
+<wsdl:message name="isSession">
+<wsdl:part element="tns:isSession" name="parameters"></wsdl:part>
+</wsdl:message>
+
+<wsdl:message name="isSessionResponse">
+<wsdl:part element="tns:isSessionResponse" name="parameters"></wsdl:part>
+</wsdl:message>
+
+<wsdl:message name="sendMessages">
+<wsdl:part element="tns:sendMessages" name="parameters"></wsdl:part>
+</wsdl:message>
+
+<wsdl:message name="sendMessagesResponse">
+<wsdl:part element="tns:sendMessagesResponse" name="parameters"></wsdl:part>
+</wsdl:message>
+
+<wsdl:message name="sendMessagesMultiLang">
+<wsdl:part element="tns:sendMessagesMultiLang" name="parameters"></wsdl:part>
+</wsdl:message>
+
+<wsdl:message name="sendMessagesMultiLangResponse">
+<wsdl:part element="tns:sendMessagesMultiLangResponse" name="parameters"></wsdl:part>
+</wsdl:message>
+
+<wsdl:message name="sendCampaignMessages">
+<wsdl:part element="tns:sendCampaignMessages" name="parameters"></wsdl:part>
+</wsdl:message>
+
+<wsdl:message name="sendCampaignMessagesResponse">
+<wsdl:part element="tns:sendCampaignMessagesResponse" name="parameters"></wsdl:part>
+</wsdl:message>
+
+<wsdl:message name="getMessagesFromShortcode">
+<wsdl:part element="tns:getMessagesFromShortcode" name="parameters"></wsdl:part>
+</wsdl:message>
+
+<wsdl:message name="getMessagesFromShortcodeResponse">
+<wsdl:part element="tns:getMessagesFromShortcodeResponse" name="parameters"></wsdl:part>
+</wsdl:message>
+
+<wsdl:message name="getMessagesFromLongNumber">
+<wsdl:part element="tns:getMessagesFromLongNumber" name="parameters"></wsdl:part>
+</wsdl:message>
+
+<wsdl:message name="getMessagesFromLongNumberResponse">
+<wsdl:part element="tns:getMessagesFromLongNumberResponse" name="parameters"></wsdl:part>
+</wsdl:message>
+
+<wsdl:message name="getSentMessageReports">
+<wsdl:part element="tns:getSentMessageReports" name="parameters"></wsdl:part>
+</wsdl:message>
+
+<wsdl:message name="getSentMessageReportsResponse">
+<wsdl:part element="tns:getSentMessageReportsResponse" name="parameters"></wsdl:part>
+</wsdl:message>
+
+<wsdl:message name="getDeliveryReports">
+<wsdl:part element="tns:getDeliveryReports" name="parameters"></wsdl:part>
+</wsdl:message>
+
+<wsdl:message name="getDeliveryReportsResponse">
+<wsdl:part element="tns:getDeliveryReportsResponse" name="parameters"></wsdl:part>
+</wsdl:message>
+
+
+<wsdl:portType name="EnterpriseSMSWS">
+
+<wsdl:operation name="serviceTest">
+<wsdl:input message="tns:serviceTest" name="serviceTest"></wsdl:input>
+<wsdl:output message="tns:serviceTestResponse" name="serviceTestResponse"></wsdl:output>
+</wsdl:operation>
+
+<wsdl:operation name="createSession">
+<wsdl:input message="tns:createSession" name="createSession"></wsdl:input>
+<wsdl:output message="tns:createSessionResponse" name="createSessionResponse"></wsdl:output>
+</wsdl:operation>
+
+<wsdl:operation name="renewSession">
+<wsdl:input message="tns:renewSession" name="renewSession"></wsdl:input>
+<wsdl:output message="tns:renewSessionResponse" name="renewSessionResponse"></wsdl:output>
+</wsdl:operation>
+
+<wsdl:operation name="closeSession">
+<wsdl:input message="tns:closeSession" name="closeSession"></wsdl:input>
+<wsdl:output message="tns:closeSessionResponse" name="closeSessionResponse"></wsdl:output>
+</wsdl:operation>
+
+<wsdl:operation name="isSession">
+<wsdl:input message="tns:isSession" name="isSession"></wsdl:input>
+<wsdl:output message="tns:isSessionResponse" name="isSessionResponse"></wsdl:output>
+</wsdl:operation>
+
+<wsdl:operation name="sendMessages">
+<wsdl:input message="tns:sendMessages" name="sendMessages"></wsdl:input>
+<wsdl:output message="tns:sendMessagesResponse" name="sendMessagesResponse"></wsdl:output>
+</wsdl:operation>
+
+<wsdl:operation name="sendMessagesMultiLang">
+<wsdl:input message="tns:sendMessagesMultiLang" name="sendMessagesMultiLang"></wsdl:input>
+<wsdl:output message="tns:sendMessagesMultiLangResponse" name="sendMessagesMultiLangResponse"></wsdl:output>
+</wsdl:operation>
+
+<wsdl:operation name="sendCampaignMessages">
+<wsdl:input message="tns:sendCampaignMessages" name="sendCampaignMessages"></wsdl:input>
+<wsdl:output message="tns:sendCampaignMessagesResponse" name="sendCampaignMessagesResponse"></wsdl:output>
+</wsdl:operation>
+
+<wsdl:operation name="getMessagesFromShortcode">
+<wsdl:input message="tns:getMessagesFromShortcode" name="getMessagesFromShortcode"></wsdl:input>
+<wsdl:output message="tns:getMessagesFromShortcodeResponse" name="getMessagesFromShortcodeResponse"></wsdl:output>
+</wsdl:operation>
+
+<wsdl:operation name="getMessagesFromLongNumber">
+<wsdl:input message="tns:getMessagesFromLongNumber" name="getMessagesFromLongNumber"></wsdl:input>
+<wsdl:output message="tns:getMessagesFromLongNumberResponse" name="getMessagesFromLongNumberResponse"></wsdl:output>
+</wsdl:operation>
+
+<wsdl:operation name="getSentMessageReports">
+<wsdl:input message="tns:getSentMessageReports" name="getSentMessageReports"></wsdl:input>
+<wsdl:output message="tns:getSentMessageReportsResponse" name="getSentMessageReportsResponse"></wsdl:output>
+</wsdl:operation>
+
+<wsdl:operation name="getDeliveryReports">
+<wsdl:input message="tns:getDeliveryReports" name="getDeliveryReports"></wsdl:input>
+<wsdl:output message="tns:getDeliveryReportsResponse" name="getDeliveryReportsResponse"></wsdl:output>
+</wsdl:operation>
+
+
+</wsdl:portType>
+
+<wsdl:binding name="EnterpriseSMSImplServiceSoapBinding" type="tns:EnterpriseSMSWS">
+<soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+
+<wsdl:operation name="serviceTest">
+<soap:operation soapAction="" style="document"/>
+<wsdl:input name="serviceTest">
+<soap:body use="literal"/>
+</wsdl:input>
+<wsdl:output name="serviceTestResponse">
+<soap:body use="literal"/>
+</wsdl:output>
+</wsdl:operation>
+
+<wsdl:operation name="createSession">
+<soap:operation soapAction="" style="document"/>
+<wsdl:input name="createSession">
+<soap:body use="literal"/>
+</wsdl:input>
+<wsdl:output name="createSessionResponse">
+<soap:body use="literal"/>
+</wsdl:output>
+</wsdl:operation>
+
+<wsdl:operation name="renewSession">
+<soap:operation soapAction="" style="document"/>
+<wsdl:input name="renewSession">
+<soap:body use="literal"/>
+</wsdl:input>
+<wsdl:output name="renewSessionResponse">
+<soap:body use="literal"/>
+</wsdl:output>
+</wsdl:operation>
+
+<wsdl:operation name="closeSession">
+<soap:operation soapAction="" style="document"/>
+<wsdl:input name="closeSession">
+<soap:body use="literal"/>
+</wsdl:input>
+<wsdl:output name="closeSessionResponse">
+<soap:body use="literal"/>
+</wsdl:output>
+</wsdl:operation>
+
+<wsdl:operation name="isSession">
+<soap:operation soapAction="" style="document"/>
+<wsdl:input name="isSession">
+<soap:body use="literal"/>
+</wsdl:input>
+<wsdl:output name="isSessionResponse">
+<soap:body use="literal"/>
+</wsdl:output>
+</wsdl:operation>
+
+<wsdl:operation name="sendMessages">
+<soap:operation soapAction="" style="document"/>
+<wsdl:input name="sendMessages">
+<soap:body use="literal"/>
+</wsdl:input>
+<wsdl:output name="sendMessagesResponse">
+<soap:body use="literal"/>
+</wsdl:output>
+</wsdl:operation>
+
+<wsdl:operation name="sendMessagesMultiLang">
+<soap:operation soapAction="" style="document"/>
+<wsdl:input name="sendMessagesMultiLang">
+<soap:body use="literal"/>
+</wsdl:input>
+<wsdl:output name="sendMessagesMultiLangResponse">
+<soap:body use="literal"/>
+</wsdl:output>
+</wsdl:operation>
+
+<wsdl:operation name="sendCampaignMessages">
+<soap:operation soapAction="" style="document"/>
+<wsdl:input name="sendCampaignMessages">
+<soap:body use="literal"/>
+</wsdl:input>
+<wsdl:output name="sendCampaignMessagesResponse">
+<soap:body use="literal"/>
+</wsdl:output>
+</wsdl:operation>
+
+<wsdl:operation name="getMessagesFromShortcode">
+<soap:operation soapAction="" style="document"/>
+<wsdl:input name="getMessagesFromShortcode">
+<soap:body use="literal"/>
+</wsdl:input>
+<wsdl:output name="getMessagesFromShortcodeResponse">
+<soap:body use="literal"/>
+</wsdl:output>
+</wsdl:operation>
+
+<wsdl:operation name="getMessagesFromLongNumber">
+<soap:operation soapAction="" style="document"/>
+<wsdl:input name="getMessagesFromLongNumber">
+<soap:body use="literal"/>
+</wsdl:input>
+<wsdl:output name="getMessagesFromLongNumberResponse">
+<soap:body use="literal"/>
+</wsdl:output>
+</wsdl:operation>
+
+<wsdl:operation name="getSentMessageReports">
+<soap:operation soapAction="" style="document"/>
+<wsdl:input name="getSentMessageReports">
+<soap:body use="literal"/>
+</wsdl:input>
+<wsdl:output name="getSentMessageReportsResponse">
+<soap:body use="literal"/>
+</wsdl:output>
+</wsdl:operation>
+
+<wsdl:operation name="getDeliveryReports">
+<soap:operation soapAction="" style="document"/>
+<wsdl:input name="getDeliveryReports">
+<soap:body use="literal"/>
+</wsdl:input>
+<wsdl:output name="getDeliveryReportsResponse">
+<soap:body use="literal"/>
+</wsdl:output>
+</wsdl:operation>
+
+</wsdl:binding>
+
+<wsdl:service name="EnterpriseSMSImplService">
+<wsdl:port binding="tns:EnterpriseSMSImplServiceSoapBinding" name="EnterpriseSMSImplPort">
+<soap:address location="http://202.129.232.190:8585/EnterpriseSMSV3/EnterpriseSMSWS.php"/>
+</wsdl:port>
+</wsdl:service>
+
+</wsdl:definitions>
