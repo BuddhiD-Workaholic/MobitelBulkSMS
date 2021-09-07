@@ -1,5 +1,7 @@
 # MobitelBulkSMS
 
+In this repository you can find the Java, PHP and C# source code. 
+
 [![slt-mobitel-logo-bluebg.jpg](https://i.postimg.cc/YCfBs8W5/slt-mobitel-logo-bluebg.jpg)](https://postimg.cc/CR12ZGJ7)
 
 ## Messaging Solutions at Mobitel Sri Lanka
