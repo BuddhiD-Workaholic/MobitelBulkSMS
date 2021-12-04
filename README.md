@@ -1,6 +1,6 @@
 # MobitelBulkSMS
 
-In this repository you can find the Java, PHP and C# source code. 
+In this repository you can find the Java, PHP and C# source codes to integrate Mobitel Bulk SMS to Java, PHP and C# Projects. 
 
 [![slt-mobitel-logo-bluebg.jpg](https://i.postimg.cc/YCfBs8W5/slt-mobitel-logo-bluebg.jpg)](https://postimg.cc/CR12ZGJ7)
 
